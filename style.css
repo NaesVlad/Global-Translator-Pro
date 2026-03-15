@@ -14,71 +14,137 @@
     --border-color: #cbd5e1;
 }
 
+/* 1. Global Reset & Centering */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 body {
     background-color: var(--bg-color);
     color: var(--text-color);
-    font-family: 'Segoe UI', sans-serif;
-    display: flex; justify-content: center; align-items: center;
-    min-height: 100vh; margin: 0; transition: 0.3s;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    width: 100%;
+    overflow-x: hidden;
+    transition: background-color 0.3s, color 0.3s;
 }
 
+/* 2. The Main Wrapper (The Glowing Box) */
 .wrapper.glowing-border {
-    position: relative; padding: 25px; width: 95%; max-width: 900px; 
-    z-index: 1; border-radius: 12px; overflow: hidden;
+    position: relative;
+    width: 90%;
+    max-width: 450px;
+    padding: 25px;
+    z-index: 1;
+    border-radius: 12px;
+    
 }
 
 .wrapper.glowing-border::before {
-    content: ''; position: absolute; top: 50%; left: 50%; width: 200%; height: 200%; 
-    background: var(--rainbow); transform: translate(-50%, -50%) rotate(0deg);
-    z-index: -2; animation: rotate-logic 10s linear infinite;
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 250%; 
+    height: 250%; 
+    background: var(--rainbow);
+    transform: translate(-50%, -50%) rotate(0deg);
+    z-index: -2;
+    animation: rotate-logic 10s linear infinite;
 }
 
 .wrapper.glowing-border::after {
-    content: ''; position: absolute; inset: 4px; background: var(--card-inner);
-    z-index: -1; border-radius: 10px;
-}
-
-.text-input { display: flex; gap: 15px; }
-
-.box-container.rotating-box {
-    flex: 1; position: relative; border-radius: 10px; overflow: hidden;
+    content: '';
+    position: absolute;
+    inset: 3px; 
     background: var(--card-inner);
+    z-index: -1;
+    border-radius: 10px;
 }
 
-.rotating-box::before {
-    content: ''; position: absolute; top: 50%; left: 50%; width: 250%; height: 250%; 
-    background: var(--rainbow); transform: translate(-50%, -50%) rotate(0deg);
-    z-index: -2; animation: rotate-logic 4s linear infinite;
+/* 3. Inner Content Layout */
+.language-controls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--border-color);
 }
 
-.rotating-box::after {
-    content: ''; position: absolute; inset: 2px; background: var(--card-inner);
-    border-radius: 8px; z-index: -1;
+select {
+    background: var(--card-inner);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    padding: 8px;
+    border-radius: 6px;
+    outline: none;
+}
+
+.exchange-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-color);
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.text-input {
+    display: flex;
+    flex-direction: column; 
+    gap: 15px;
+}
+
+/* 4. Individual Text Boxes */
+.box-container.rotating-box {
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    background: var(--card-inner);
+    border: 1px solid var(--border-color);
 }
 
 textarea { 
-    width: 100%; height: 180px; background: transparent !important; 
-    color: var(--text-color) !important; border: none; padding: 15px; 
-    resize: none; font-size: 1.1rem; outline: none; box-sizing: border-box;
-    position: relative; z-index: 10;
+    width: 100%;
+    height: 150px;
+    background: transparent !important; 
+    color: var(--text-color) !important;
+    border: none;
+    padding: 15px; 
+    resize: none;
+    font-size: 1.1rem;
+    outline: none;
 }
 
 .box-footer { 
-    position: relative; z-index: 11; display: flex; 
-    justify-content: space-between; padding: 10px; 
-    border-top: 1px solid var(--border-color); background: var(--card-inner);
+    display: flex; 
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px; 
+    border-top: 1px solid var(--border-color);
+    background: var(--card-inner);
 }
 
+/* 5. Buttons */
 .snake-btn {
-    position: relative; background: var(--card-inner); color: var(--text-color);
-    border: 1px solid var(--border-color); cursor: pointer; z-index: 5; 
-    overflow: hidden; transition: 0.3s; padding: 8px 15px; border-radius: 6px;
+    background: var(--card-inner);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    cursor: pointer;
+    padding: 6px 12px;
+    border-radius: 6px;
+    transition: 0.3s;
 }
 
 #translate-btn { 
     width: 100%; 
     margin-top: 20px; 
-    padding: 18px; 
+    padding: 16px; 
     font-weight: bold; 
     background: var(--accent-blue); 
     color: #ffffff !important;
@@ -86,71 +152,29 @@ textarea {
     border-radius: 8px; 
     cursor: pointer;
 }
+
+/* 6. Light Mode Overrides */
 .theme-light, 
 .theme-light #translate-btn, 
 .theme-light .snake-btn, 
-.theme-light .controls i {
+.theme-light .controls i,
+.theme-light select,
+.theme-light .exchange-btn {
     color: #000000 !important;
 }
-.snake-btn::before {
-    content: ''; position: absolute; top: 50%; left: 50%; width: 400%; height: 400%; 
-    background: var(--rainbow); transform: translate(-50%, -50%) rotate(0deg);
-    z-index: -2; opacity: 0; transition: 0.3s;
-}
 
-.snake-btn::after {
-    content: ''; position: absolute; inset: 2px; background: var(--card-inner);
-    border-radius: 5px; z-index: -1;
-}
-
-.snake-btn:hover::before { opacity: 1; animation: rotate-logic 2s linear infinite; }
-
+/* 7. Animations */
 @keyframes rotate-logic {
     from { transform: translate(-50%, -50%) rotate(0deg); }
     to { transform: translate(-50%, -50%) rotate(360deg); }
 }
 
-.language-controls { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; padding-bottom: 15px; border-bottom: 1px solid var(--border-color); }
-select { background: var(--card-inner); color: var(--text-color); border: 1px solid var(--border-color); padding: 8px; border-radius: 6px; }
-.exchange-btn { background: transparent; border: none; color: var(--text-color); font-size: 1.5rem; cursor: pointer; }
-
-@media (max-width: 768px) { .text-input { flex-direction: column; } }
-
-html, body {
-    overflow-x: hidden; 
-    width: 100%;
-    margin: 0;
-    padding: 0;
-}
-
-.container {
-    max-width: 95%; 
-    margin: 10px auto; 
-    box-sizing: border-box; 
-}
-
-@media (max-width: 480px) {
-    .container {
-        width: 90vw; 
-        padding: 15px; 
+/* 8. Desktop View */
+@media (min-width: 769px) {
+    .text-input {
+        flex-direction: row;
     }
-}
-
-body {
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center; 
-    align-items: center;
-    min-height: 100vh;
-    background-color: var(--bg-color);
-    overflow-x: hidden; 
-}
-
-.container {
-    width: 90%;          
-    max-width: 400px;    
-    margin: 20px auto;   
-    position: relative;
-    left: 0;             
+    .wrapper.glowing-border {
+        max-width: 900px;
+    }
 }
