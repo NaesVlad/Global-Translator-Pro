@@ -14,37 +14,35 @@
     --border-color: #cbd5e1;
 }
 
-/* 1. Global Reset */
+/* 1. Reset & Centering */
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
-/* 2. Body: Forced Centering & Safe Zone */
 body {
     background-color: var(--bg-color);
     color: var(--text-color);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Segoe UI', sans-serif;
     display: flex !important;
     justify-content: center !important;
     align-items: center !important;
     min-height: 100vh;
-    width: 100%;
-    padding: 25px !important; 
+    padding: 30px !important; 
     overflow-x: hidden;
-    transition: background-color 0.3s, color 0.3s;
+    transition: 0.3s;
 }
 
-/* 3. The Main Wrapper (The Glowing Box) */
+/* 2. The Main Glowing Border Effect */
 .wrapper.glowing-border {
     position: relative;
-    width: 92% !important; 
+    width: 100%;
     max-width: 450px;
     padding: 25px;
     z-index: 1;
     border-radius: 12px;
-    margin: auto !important;
+    background: var(--card-inner); 
 }
 
 .wrapper.glowing-border::before {
@@ -63,20 +61,61 @@ body {
 .wrapper.glowing-border::after {
     content: '';
     position: absolute;
-    inset: 3px; 
+    inset: 4px; 
     background: var(--card-inner);
     z-index: -1;
     border-radius: 10px;
 }
 
-/* 4. Language Selectors */
+/* 3. Button "Snake" Hover Effects */
+.snake-btn {
+    position: relative;
+    background: var(--card-inner);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    cursor: pointer;
+    z-index: 5; 
+    overflow: hidden;
+    transition: 0.3s;
+    padding: 8px 15px;
+    border-radius: 6px;
+}
+
+.snake-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 400%;
+    height: 400%; 
+    background: var(--rainbow);
+    transform: translate(-50%, -50%) rotate(0deg);
+    z-index: -2;
+    opacity: 0; 
+    transition: 0.3s;
+}
+
+.snake-btn::after {
+    content: '';
+    position: absolute;
+    inset: 2px;
+    background: var(--card-inner);
+    border-radius: 5px;
+    z-index: -1;
+}
+
+/* Activate hover effect */
+.snake-btn:hover::before {
+    opacity: 1;
+    animation: rotate-logic 2s linear infinite;
+}
+
+/* 4. Layout & Components */
 .language-controls {
     display: flex;
     align-items: center;
     gap: 12px;
     margin-bottom: 20px;
-    padding-bottom: 15px;
-    border-bottom: 1px solid var(--border-color);
 }
 
 select {
@@ -85,7 +124,6 @@ select {
     border: 1px solid var(--border-color);
     padding: 8px;
     border-radius: 6px;
-    outline: none;
 }
 
 .exchange-btn {
@@ -96,19 +134,10 @@ select {
     cursor: pointer;
 }
 
-/* 5. Input Area */
 .text-input {
     display: flex;
     flex-direction: column;
     gap: 15px;
-}
-
-.box-container.rotating-box {
-    position: relative;
-    border-radius: 10px;
-    overflow: hidden;
-    background: var(--card-inner);
-    border: 1px solid var(--border-color);
 }
 
 textarea { 
@@ -126,27 +155,14 @@ textarea {
 .box-footer { 
     display: flex; 
     justify-content: space-between;
-    align-items: center;
     padding: 10px; 
     border-top: 1px solid var(--border-color);
-    background: var(--card-inner);
-}
-
-/* 6. Buttons */
-.snake-btn {
-    background: var(--card-inner);
-    color: var(--text-color);
-    border: 1px solid var(--border-color);
-    cursor: pointer;
-    padding: 6px 12px;
-    border-radius: 6px;
-    transition: 0.3s;
 }
 
 #translate-btn { 
     width: 100%; 
     margin-top: 20px; 
-    padding: 16px; 
+    padding: 18px; 
     font-weight: bold; 
     background: var(--accent-blue); 
     color: #ffffff !important;
@@ -155,7 +171,7 @@ textarea {
     cursor: pointer;
 }
 
-/* 7. Light Mode Rules (Ensures Black Text) */
+/* 5. Light Mode Fixes */
 .theme-light, 
 .theme-light #translate-btn, 
 .theme-light .snake-btn, 
@@ -165,18 +181,14 @@ textarea {
     color: #000000 !important;
 }
 
-/* 8. Animation */
+/* 6. Animations */
 @keyframes rotate-logic {
     from { transform: translate(-50%, -50%) rotate(0deg); }
     to { transform: translate(-50%, -50%) rotate(360deg); }
 }
 
-/* 9. Desktop Responsiveness */
+/* 7. Desktop Responsiveness */
 @media (min-width: 769px) {
-    .text-input {
-        flex-direction: row;
-    }
-    .wrapper.glowing-border {
-        max-width: 900px;
-    }
+    .text-input { flex-direction: row; }
+    .wrapper.glowing-border { max-width: 900px; }
 }
