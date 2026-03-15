@@ -81,10 +81,16 @@ textarea {
     padding: 18px; 
     font-weight: bold; 
     background: var(--accent-blue); 
-    color: #ffffff !important; /* Forces the text to stay white */
+    color: #ffffff !important;
     border: none; 
     border-radius: 8px; 
     cursor: pointer;
+}
+.theme-light, 
+.theme-light #translate-btn, 
+.theme-light .snake-btn, 
+.theme-light .controls i {
+    color: #000000 !important;
 }
 .snake-btn::before {
     content: ''; position: absolute; top: 50%; left: 50%; width: 400%; height: 400%; 
