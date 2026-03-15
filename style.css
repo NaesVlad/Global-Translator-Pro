@@ -10,34 +10,42 @@
 .theme-light {
     --bg-color: #f8fafc;
     --card-inner: #ffffff;
-    --text-color: #0f172a;
+    --text-color: #000000;
     --border-color: #cbd5e1;
 }
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
 body {
     background-color: var(--bg-color);
     color: var(--text-color);
     font-family: 'Segoe UI', sans-serif;
-    display: flex; justify-content: center; align-items: center;
-    min-height: 100vh; 
-    padding: 25px; 
-    overflow-x: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
 }
 
-/* 1. THE MAIN CARD BORDER (STABILIZED) */
+/* 1. THE MAIN CARD: MASKING THE SPINNING SQUARE */
 .wrapper.glowing-border {
     position: relative;
     width: 100%;
     max-width: 450px;
-    padding: 25px;
-    z-index: 1;
-    border-radius: 12px;
+    padding: 20px;
     background: var(--card-inner);
+    border-radius: 15px;
+    z-index: 1;
     overflow: hidden; 
+    display: flex;
+    flex-direction: column;
 }
 
+/* The Spinning Rainbow */
 .wrapper.glowing-border::before {
     content: '';
     position: absolute;
@@ -46,8 +54,8 @@ body {
     width: 200%;
     height: 200%;
     background: var(--rainbow);
+    animation: rotate-logic 4s linear infinite;
     z-index: -2;
-    animation: rotate-logic 8s linear infinite;
 }
 
 .wrapper.glowing-border::after {
@@ -55,11 +63,11 @@ body {
     position: absolute;
     inset: 4px; 
     background: var(--card-inner);
+    border-radius: 11px;
     z-index: -1;
-    border-radius: 10px;
 }
 
-/* 2. BUTTONS (SNAKE EFFECT) */
+/* 2. BUTTONS WITH HOVER EFFECTS */
 .snake-btn {
     position: relative;
     background: var(--card-inner);
@@ -68,14 +76,15 @@ body {
     padding: 8px 15px;
     border-radius: 6px;
     cursor: pointer;
-    overflow: hidden;
+    overflow: hidden; 
     z-index: 1;
+    transition: 0.3s;
 }
 
 .snake-btn::before {
     content: '';
     position: absolute;
-    top: -100%; left: -100%; width: 300%; height: 300%;
+    top: -50%; left: -50%; width: 200%; height: 200%;
     background: var(--rainbow);
     z-index: -2;
     opacity: 0;
@@ -93,46 +102,41 @@ body {
 
 .snake-btn:hover::before {
     opacity: 1;
-    animation: rotate-logic 3s linear infinite;
+    animation: rotate-logic 2s linear infinite;
 }
 
-/* 3. LAYOUT */
-.language-controls { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
-select { background: var(--card-inner); color: var(--text-color); border: 1px solid var(--border-color); padding: 8px; border-radius: 6px; outline: none; }
-.exchange-btn { background: transparent; border: none; color: var(--text-color); font-size: 1.5rem; cursor: pointer; }
-.text-input { display: flex; flex-direction: column; gap: 15px; }
+/* 3. ELEMENTS */
+.language-controls { display: flex; align-items: center; gap: 10px; margin-bottom: 15px; }
+select { background: var(--card-inner); color: var(--text-color); border: 1px solid var(--border-color); padding: 5px; border-radius: 5px; }
+.text-input { display: flex; flex-direction: column; gap: 10px; }
 
 textarea { 
-    width: 100%; height: 180px; background: transparent !important; 
-    color: var(--text-color) !important; border: none; padding: 10px; resize: none; outline: none;
+    width: 100%; height: 140px; background: transparent !important; 
+    color: var(--text-color) !important; border: none; padding: 10px; 
+    resize: none; outline: none;
 }
 
-.box-footer { display: flex; justify-content: space-between; padding: 10px; border-top: 1px solid var(--border-color); }
+.box-footer { display: flex; justify-content: space-between; padding: 5px 10px; border-top: 1px solid var(--border-color); }
 
 #translate-btn { 
-    width: 100%; margin-top: 20px; padding: 18px; font-weight: bold;
+    width: 100%; margin-top: 15px; padding: 15px; 
     background: var(--accent-blue); color: #ffffff !important;
-    border: none; border-radius: 8px; cursor: pointer;
+    border: none; border-radius: 8px; font-weight: bold; cursor: pointer;
 }
 
-/* 4. ANIMATION */
+/* 4. LIGHT MODE TEXT FIX */
+.theme-light, 
+.theme-light #translate-btn, 
+.theme-light .snake-btn, 
+.theme-light select,
+.theme-light textarea {
+    color: #000000 !important;
+}
+
+/* 5. ANIMATION */
 @keyframes rotate-logic {
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
-}
-
-/* Fix for button rotation to keep it centered */
-.snake-btn:hover::before {
-    animation: rotate-logic-centered 3s linear infinite;
-}
-
-@keyframes rotate-logic-centered {
-    from { transform: translate(-50%, -50%) rotate(0deg); }
-    to { transform: translate(-50%, -50%) rotate(360deg); }
-}
-
-.theme-light, .theme-light #translate-btn, .theme-light .snake-btn {
-    color: #000000 !important;
 }
 
 @media (min-width: 769px) {
