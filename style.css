@@ -14,35 +14,37 @@
     --border-color: #cbd5e1;
 }
 
-/* 1. Global Reset & Centering */
+/* 1. Global Reset */
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
+/* 2. Body: Forced Centering & Safe Zone */
 body {
     background-color: var(--bg-color);
     color: var(--text-color);
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
     min-height: 100vh;
     width: 100%;
+    padding: 25px !important; 
     overflow-x: hidden;
     transition: background-color 0.3s, color 0.3s;
 }
 
-/* 2. The Main Wrapper (The Glowing Box) */
+/* 3. The Main Wrapper (The Glowing Box) */
 .wrapper.glowing-border {
     position: relative;
-    width: 90%;
+    width: 92% !important; 
     max-width: 450px;
     padding: 25px;
     z-index: 1;
     border-radius: 12px;
-    
+    margin: auto !important;
 }
 
 .wrapper.glowing-border::before {
@@ -67,7 +69,7 @@ body {
     border-radius: 10px;
 }
 
-/* 3. Inner Content Layout */
+/* 4. Language Selectors */
 .language-controls {
     display: flex;
     align-items: center;
@@ -94,13 +96,13 @@ select {
     cursor: pointer;
 }
 
+/* 5. Input Area */
 .text-input {
     display: flex;
-    flex-direction: column; 
+    flex-direction: column;
     gap: 15px;
 }
 
-/* 4. Individual Text Boxes */
 .box-container.rotating-box {
     position: relative;
     border-radius: 10px;
@@ -130,7 +132,7 @@ textarea {
     background: var(--card-inner);
 }
 
-/* 5. Buttons */
+/* 6. Buttons */
 .snake-btn {
     background: var(--card-inner);
     color: var(--text-color);
@@ -153,7 +155,7 @@ textarea {
     cursor: pointer;
 }
 
-/* 6. Light Mode Overrides */
+/* 7. Light Mode Rules (Ensures Black Text) */
 .theme-light, 
 .theme-light #translate-btn, 
 .theme-light .snake-btn, 
@@ -163,13 +165,13 @@ textarea {
     color: #000000 !important;
 }
 
-/* 7. Animations */
+/* 8. Animation */
 @keyframes rotate-logic {
     from { transform: translate(-50%, -50%) rotate(0deg); }
     to { transform: translate(-50%, -50%) rotate(360deg); }
 }
 
-/* 8. Desktop View */
+/* 9. Desktop Responsiveness */
 @media (min-width: 769px) {
     .text-input {
         flex-direction: row;
