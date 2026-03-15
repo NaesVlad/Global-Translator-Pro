@@ -115,3 +115,23 @@ select { background: var(--card-inner); color: var(--text-color); border: 1px so
 .exchange-btn { background: transparent; border: none; color: var(--text-color); font-size: 1.5rem; cursor: pointer; }
 
 @media (max-width: 768px) { .text-input { flex-direction: column; } }
+
+html, body {
+    overflow-x: hidden; 
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 95%; 
+    margin: 10px auto; 
+    box-sizing: border-box; 
+}
+
+@media (max-width: 480px) {
+    .container {
+        width: 90vw; 
+        padding: 15px; 
+    }
+}
