@@ -135,3 +135,22 @@ html, body {
         padding: 15px; 
     }
 }
+
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    min-height: 100vh;
+    background-color: var(--bg-color);
+    overflow-x: hidden; 
+}
+
+.container {
+    width: 90%;          
+    max-width: 400px;    
+    margin: 20px auto;   
+    position: relative;
+    left: 0;             
+}
