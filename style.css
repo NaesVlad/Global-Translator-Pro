@@ -14,7 +14,6 @@
     --border-color: #cbd5e1;
 }
 
-/* 1. Reset & Centering */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -25,60 +24,57 @@ body {
     background-color: var(--bg-color);
     color: var(--text-color);
     font-family: 'Segoe UI', sans-serif;
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     min-height: 100vh;
-    padding: 30px !important; 
+    padding: 20px;
     overflow-x: hidden;
-    transition: 0.3s;
 }
 
-/* 2. The Main Glowing Border Effect */
+/* 1. MAIN CARD BORDER FIX */
 .wrapper.glowing-border {
     position: relative;
     width: 100%;
     max-width: 450px;
     padding: 25px;
+    background: var(--card-inner);
+    border-radius: 15px;
     z-index: 1;
-    border-radius: 12px;
-    background: var(--card-inner); 
+    overflow: visible; 
 }
 
 .wrapper.glowing-border::before {
     content: '';
     position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 250%; 
-    height: 250%; 
+    top: -4px; left: -4px; right: -4px; bottom: -4px;
     background: var(--rainbow);
-    transform: translate(-50%, -50%) rotate(0deg);
     z-index: -2;
-    animation: rotate-logic 10s linear infinite;
+    border-radius: 17px;
+    animation: rotate-logic 4s linear infinite;
 }
 
 .wrapper.glowing-border::after {
     content: '';
     position: absolute;
-    inset: 4px; 
+    inset: 0;
     background: var(--card-inner);
     z-index: -1;
-    border-radius: 10px;
+    border-radius: 13px;
 }
 
-/* 3. Button "Snake" Hover Effects */
+/* 2. BUTTON HOVER FIX */
 .snake-btn {
     position: relative;
     background: var(--card-inner);
     color: var(--text-color);
     border: 1px solid var(--border-color);
-    cursor: pointer;
-    z-index: 5; 
-    overflow: hidden;
-    transition: 0.3s;
     padding: 8px 15px;
     border-radius: 6px;
+    cursor: pointer;
+    overflow: hidden; 
+    z-index: 1;
+    transition: 0.3s;
 }
 
 .snake-btn::before {
@@ -86,13 +82,13 @@ body {
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 400%;
-    height: 400%; 
+    width: 300%; 
+    height: 300%;
     background: var(--rainbow);
     transform: translate(-50%, -50%) rotate(0deg);
     z-index: -2;
     opacity: 0; 
-    transition: 0.3s;
+    transition: opacity 0.3s;
 }
 
 .snake-btn::after {
@@ -100,94 +96,58 @@ body {
     position: absolute;
     inset: 2px;
     background: var(--card-inner);
-    border-radius: 5px;
+    border-radius: 4px;
     z-index: -1;
 }
 
-/* Activate hover effect */
 .snake-btn:hover::before {
     opacity: 1;
     animation: rotate-logic 2s linear infinite;
 }
 
-/* 4. Layout & Components */
-.language-controls {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 20px;
+.snake-btn:hover {
+    border-color: transparent;
 }
 
-select {
-    background: var(--card-inner);
-    color: var(--text-color);
-    border: 1px solid var(--border-color);
-    padding: 8px;
-    border-radius: 6px;
-}
-
-.exchange-btn {
-    background: transparent;
-    border: none;
-    color: var(--text-color);
-    font-size: 1.5rem;
-    cursor: pointer;
-}
-
-.text-input {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
+/* 3. LAYOUT */
+.language-controls { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+select { background: var(--card-inner); color: var(--text-color); border: 1px solid var(--border-color); padding: 8px; border-radius: 6px; outline: none; }
+.exchange-btn { background: transparent; border: none; color: var(--text-color); font-size: 1.5rem; cursor: pointer; }
+.text-input { display: flex; flex-direction: column; gap: 15px; }
 
 textarea { 
-    width: 100%;
-    height: 150px;
-    background: transparent !important; 
-    color: var(--text-color) !important;
-    border: none;
-    padding: 15px; 
-    resize: none;
-    font-size: 1.1rem;
-    outline: none;
+    width: 100%; height: 150px; background: transparent !important; 
+    color: var(--text-color) !important; border: none; padding: 10px; 
+    resize: none; outline: none; position: relative; z-index: 5;
 }
 
-.box-footer { 
-    display: flex; 
-    justify-content: space-between;
-    padding: 10px; 
-    border-top: 1px solid var(--border-color);
-}
+.box-footer { display: flex; justify-content: space-between; padding: 10px; border-top: 1px solid var(--border-color); }
 
 #translate-btn { 
-    width: 100%; 
-    margin-top: 20px; 
-    padding: 18px; 
-    font-weight: bold; 
-    background: var(--accent-blue); 
-    color: #ffffff !important;
-    border: none; 
-    border-radius: 8px; 
-    cursor: pointer;
+    width: 100%; margin-top: 20px; padding: 18px; 
+    background: var(--accent-blue); color: #fff !important;
+    border: none; border-radius: 8px; font-weight: bold; cursor: pointer;
 }
 
-/* 5. Light Mode Fixes */
-.theme-light, 
-.theme-light #translate-btn, 
-.theme-light .snake-btn, 
-.theme-light .controls i,
-.theme-light select,
-.theme-light .exchange-btn {
+/* 4. LIGHT MODE */
+.theme-light, .theme-light #translate-btn, .theme-light .snake-btn, .theme-light select, .theme-light .exchange-btn {
     color: #000000 !important;
 }
 
-/* 6. Animations */
 @keyframes rotate-logic {
     from { transform: translate(-50%, -50%) rotate(0deg); }
     to { transform: translate(-50%, -50%) rotate(360deg); }
 }
 
-/* 7. Desktop Responsiveness */
+@keyframes rotate-border-only {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.wrapper.glowing-border::before {
+    animation: rotate-border-only 6s linear infinite;
+}
+
 @media (min-width: 769px) {
     .text-input { flex-direction: row; }
     .wrapper.glowing-border { max-width: 900px; }
