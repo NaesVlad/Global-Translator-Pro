@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Translator Pro</title>
+    <script src="https://code.responsivevoice.org/responsivevoice.js?key=8W6N6YI8"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-dark">
+    <div class="container">
+        <div class="wrapper glowing-border">
+            <div class="language-controls">
+                <button id="theme-toggle" class="theme-btn">☀️</button>
+                <select id="from-lang">
+                    <option value="Autodetect">Detect Language</option>
+                    <option value="af-ZA">Afrikaans</option><option value="ar-SA">Arabic</option>
+                    <option value="bn-IN">Bengali</option><option value="bs-BA">Bosnian</option>
+                    <option value="ca-ES">Catalan</option><option value="zh-CN">Chinese</option>
+                    <option value="hr-HR">Croatian</option><option value="cs-CZ">Czech</option>
+                    <option value="da-DK">Danish</option><option value="nl-NL">Dutch</option>
+                    <option value="en-GB" selected>English</option><option value="et-EE">Estonian</option>
+                    <option value="tl-PH">Filipino</option><option value="fi-FI">Finnish</option>
+                    <option value="fr-FR">French</option><option value="de-DE">German</option>
+                    <option value="el-GR">Greek</option><option value="gu-IN">Gujarati</option>
+                    <option value="he-IL">Hebrew</option><option value="hi-IN">Hindi</option>
+                    <option value="hu-HU">Hungarian</option><option value="is-IS">Icelandic</option>
+                    <option value="id-ID">Indonesian</option><option value="it-IT">Italian</option>
+                    <option value="ja-JP">Japanese</option><option value="kn-IN">Kannada</option>
+                    <option value="ko-KR">Korean</option><option value="lv-LV">Latvian</option>
+                    <option value="ml-IN">Malayalam</option><option value="no-NO">Norwegian</option>
+                    <option value="pl-PL">Polish</option><option value="pt-PT">Portuguese</option>
+                    <option value="ro-RO">Romanian</option><option value="ru-RU">Russian</option>
+                    <option value="sr-RS">Serbian</option><option value="sk-SK">Slovak</option>
+                    <option value="es-ES">Spanish</option><option value="sw-KE">Swahili</option>
+                    <option value="sv-SE">Swedish</option><option value="ta-IN">Tamil</option>
+                    <option value="th-TH">Thai</option><option value="tr-TR">Turkish</option>
+                    <option value="uk-UA">Ukrainian</option><option value="vi-VN">Vietnamese</option>
+                    <option value="cy-GB">Welsh</option>
+                </select>
+                <button id="swap-btn" class="exchange-btn">⇄</button>
+                <select id="to-lang">
+                    <option value="af-ZA">Afrikaans</option><option value="ar-SA">Arabic</option>
+                    <option value="bn-IN">Bengali</option><option value="bs-BA">Bosnian</option>
+                    <option value="ca-ES">Catalan</option><option value="zh-CN">Chinese</option>
+                    <option value="hr-HR">Croatian</option><option value="cs-CZ">Czech</option>
+                    <option value="da-DK">Danish</option><option value="nl-NL">Dutch</option>
+                    <option value="en-GB">English</option><option value="et-EE">Estonian</option>
+                    <option value="tl-PH">Filipino</option><option value="fi-FI">Finnish</option>
+                    <option value="fr-FR" selected>French</option><option value="de-DE">German</option>
+                    <option value="el-GR">Greek</option><option value="gu-IN">Gujarati</option>
+                    <option value="he-IL">Hebrew</option><option value="hi-IN">Hindi</option>
+                    <option value="hu-HU">Hungarian</option><option value="is-IS">Icelandic</option>
+                    <option value="id-ID">Indonesian</option><option value="it-IT">Italian</option>
+                    <option value="ja-JP">Japanese</option><option value="kn-IN">Kannada</option>
+                    <option value="ko-KR">Korean</option><option value="lv-LV">Latvian</option>
+                    <option value="ml-IN">Malayalam</option><option value="no-NO">Norwegian</option>
+                    <option value="pl-PL">Polish</option><option value="pt-PT">Portuguese</option>
+                    <option value="ro-RO">Romanian</option><option value="ru-RU">Russian</option>
+                    <option value="sr-RS">Serbian</option><option value="sk-SK">Slovak</option>
+                    <option value="es-ES">Spanish</option><option value="sw-KE">Swahili</option>
+                    <option value="sv-SE">Swedish</option><option value="ta-IN">Tamil</option>
+                    <option value="th-TH">Thai</option><option value="tr-TR">Turkish</option>
+                    <option value="uk-UA">Ukrainian</option><option value="vi-VN">Vietnamese</option>
+                    <option value="cy-GB">Welsh</option>
+                </select>
+            </div>
+
+            <div class="text-input">
+                <div class="box-container rotating-box">
+                    <textarea id="from-text" placeholder="Enter text" maxlength="500">Hello, how are you</textarea>
+                    <div class="box-footer">
+                        <div class="icons">
+                            <button id="from-listen" class="snake-btn">Listen</button>
+                            <button id="from-copy" class="snake-btn">Copy</button>
+                        </div>
+                        <span id="char-count">18/500</span>
+                    </div>
+                </div>
+                <div class="box-container rotating-box">
+                    <textarea id="to-text" placeholder="Translation" readonly></textarea>
+                    <div class="box-footer">
+                        <div class="icons">
+                            <button id="to-listen" class="snake-btn">Listen</button>
+                            <button id="to-copy" class="snake-btn">Copy</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button id="translate-btn" class="snake-btn">Translate Now</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

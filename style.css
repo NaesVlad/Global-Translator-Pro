@@ -1,0 +1,102 @@
+:root {
+    --bg-color: #0f172a;
+    --card-inner: #000000; 
+    --text-color: #ffffff;
+    --border-color: #334155;
+    --accent-blue: #3b82f6;
+    --rainbow: conic-gradient(from 0deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+}
+
+.theme-light {
+    --bg-color: #f8fafc;
+    --card-inner: #ffffff;
+    --text-color: #0f172a;
+    --border-color: #cbd5e1;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Segoe UI', sans-serif;
+    display: flex; justify-content: center; align-items: center;
+    min-height: 100vh; margin: 0; transition: 0.3s;
+}
+
+.wrapper.glowing-border {
+    position: relative; padding: 25px; width: 95%; max-width: 900px; 
+    z-index: 1; border-radius: 12px; overflow: hidden;
+}
+
+.wrapper.glowing-border::before {
+    content: ''; position: absolute; top: 50%; left: 50%; width: 200%; height: 200%; 
+    background: var(--rainbow); transform: translate(-50%, -50%) rotate(0deg);
+    z-index: -2; animation: rotate-logic 10s linear infinite;
+}
+
+.wrapper.glowing-border::after {
+    content: ''; position: absolute; inset: 4px; background: var(--card-inner);
+    z-index: -1; border-radius: 10px;
+}
+
+.text-input { display: flex; gap: 15px; }
+
+.box-container.rotating-box {
+    flex: 1; position: relative; border-radius: 10px; overflow: hidden;
+    background: var(--card-inner);
+}
+
+.rotating-box::before {
+    content: ''; position: absolute; top: 50%; left: 50%; width: 250%; height: 250%; 
+    background: var(--rainbow); transform: translate(-50%, -50%) rotate(0deg);
+    z-index: -2; animation: rotate-logic 4s linear infinite;
+}
+
+.rotating-box::after {
+    content: ''; position: absolute; inset: 2px; background: var(--card-inner);
+    border-radius: 8px; z-index: -1;
+}
+
+textarea { 
+    width: 100%; height: 180px; background: transparent !important; 
+    color: var(--text-color) !important; border: none; padding: 15px; 
+    resize: none; font-size: 1.1rem; outline: none; box-sizing: border-box;
+    position: relative; z-index: 10;
+}
+
+.box-footer { 
+    position: relative; z-index: 11; display: flex; 
+    justify-content: space-between; padding: 10px; 
+    border-top: 1px solid var(--border-color); background: var(--card-inner);
+}
+
+.snake-btn {
+    position: relative; background: var(--card-inner); color: var(--text-color);
+    border: 1px solid var(--border-color); cursor: pointer; z-index: 5; 
+    overflow: hidden; transition: 0.3s; padding: 8px 15px; border-radius: 6px;
+}
+
+#translate-btn { width: 100%; margin-top: 20px; padding: 18px; font-weight: bold; background: var(--accent-blue); color: white; border: none; border-radius: 8px; }
+
+.snake-btn::before {
+    content: ''; position: absolute; top: 50%; left: 50%; width: 400%; height: 400%; 
+    background: var(--rainbow); transform: translate(-50%, -50%) rotate(0deg);
+    z-index: -2; opacity: 0; transition: 0.3s;
+}
+
+.snake-btn::after {
+    content: ''; position: absolute; inset: 2px; background: var(--card-inner);
+    border-radius: 5px; z-index: -1;
+}
+
+.snake-btn:hover::before { opacity: 1; animation: rotate-logic 2s linear infinite; }
+
+@keyframes rotate-logic {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+.language-controls { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; padding-bottom: 15px; border-bottom: 1px solid var(--border-color); }
+select { background: var(--card-inner); color: var(--text-color); border: 1px solid var(--border-color); padding: 8px; border-radius: 6px; }
+.exchange-btn { background: transparent; border: none; color: var(--text-color); font-size: 1.5rem; cursor: pointer; }
+
+@media (max-width: 768px) { .text-input { flex-direction: column; } }
