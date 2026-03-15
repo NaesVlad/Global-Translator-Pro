@@ -75,8 +75,17 @@ textarea {
     overflow: hidden; transition: 0.3s; padding: 8px 15px; border-radius: 6px;
 }
 
-#translate-btn { width: 100%; margin-top: 20px; padding: 18px; font-weight: bold; background: var(--accent-blue); color: white; border: none; border-radius: 8px; }
-
+#translate-btn { 
+    width: 100%; 
+    margin-top: 20px; 
+    padding: 18px; 
+    font-weight: bold; 
+    background: var(--accent-blue); 
+    color: #ffffff !important; /* Forces the text to stay white */
+    border: none; 
+    border-radius: 8px; 
+    cursor: pointer;
+}
 .snake-btn::before {
     content: ''; position: absolute; top: 50%; left: 50%; width: 400%; height: 400%; 
     background: var(--rainbow); transform: translate(-50%, -50%) rotate(0deg);
